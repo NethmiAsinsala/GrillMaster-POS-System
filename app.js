@@ -50,7 +50,7 @@ function renderProductCatalog() {
         .filter(p => p.name.toLowerCase().includes(search))
         .forEach(p => {
             catalog.innerHTML += `
-                <div class="product" onclick="addToCart(${p.id})">
+                <div class="product" id="product-${p.id}" onclick="selectProduct(${p.id})">
                  <img src="${p.image}" alt="${p.name}" class="product-image">
                     <strong>${p.name}</strong>
                     <div>LKR ${p.price}</div>
@@ -58,6 +58,7 @@ function renderProductCatalog() {
             `;
         });
 }
+
 
 document.getElementById("categoryFilter").addEventListener("change", renderProductCatalog);
 document.getElementById("searchProduct").addEventListener("input", renderProductCatalog);
@@ -243,8 +244,14 @@ document.getElementById("checkoutBtn").addEventListener("click", function() {
     orders.push(order);
     save("orders", orders);
     clearCart();
-    renderOrdersList();
-    alert("Order placed successfully!");
+
+
+document.querySelectorAll(".product.selected")
+    .forEach(el => el.classList.remove("selected"));
+
+renderOrdersList();
+alert("Order placed successfully!");
+
 });
 
 function renderOrdersList() {
@@ -259,6 +266,16 @@ function renderOrdersList() {
         `;
     });
 }
+function selectProduct(id) {
+    const card = document.getElementById("product-" + id);
+
+    card.classList.toggle("selected");
+
+    if (card.classList.contains("selected")) {
+        addToCart(id);
+    }
+}
+
 
 
 window.addEventListener('DOMContentLoaded', () => {
