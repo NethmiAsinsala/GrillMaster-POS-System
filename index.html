@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GrillMaster POS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>GrillMaster POS</h1>
+  </header>
+
+  <div class="container">
+    <div class="grid">
+      
+      <div>
+        <div class="card" style="margin-bottom:1rem">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+            <h2 style="font-size:1rem">Menu</h2>
+            <div style="display:flex;gap:0.5rem">
+              <button class="btn" id="open-products" onclick="showProducts()">Products</button>
+              <button class="btn" id="open-customers" onclick="showCustomers()">Customers</button>
+              <button class="btn" id="open-orders" onclick="showOrders()">Orders</button>
+            </div>
+          </div>
+
+          <div style="margin-bottom:0.5rem">
+            <form id="filterForm" class="row">
+              <select id="categoryFilter">
+                <option value="all">All</option>
+                <option value="Burgers">Burgers</option>
+                <option value="Fries">Fries</option>
+                <option value="Drinks">Drinks</option>
+              </select>
+              <input id="searchProduct" placeholder="Search product..." />
+            </form>
+          </div>
+
+          <div class="product-list" id="productList"></div>
+        </div>
+
+        
+        <div class="card" id="panel-products" style="display:none;margin-bottom:1rem">
+          <h3>Manage Products</h3>
+          <form id="productForm" class="row" style="margin-top:0.5rem">
+            <input id="pName" placeholder="Name" required />
+
+            <select id="pCategory">
+                <option>Burger</option>
+                <option>Fries</option>  
+                <option>Drink</option>
+            </select>
+
+            <input id="pPrice" placeholder="Price" type="number" min="0" step="0.01" required />
+            <button class="btn" type="submit">Save</button>
+          </form>
+          <div class="list" id="productsList"></div>
+        </div>
+
+        <div class="card" id="panel-customers" style="display:none;margin-bottom:1rem">
+          <h3>Customers</h3>
+          <form id="customerForm" class="row" style="margin-top:0.5rem">
+            <input id="cName" placeholder="Name" required />
+            <input id="cContact" placeholder="Contact" />
+            <button class="btn" type="submit">Add</button>
+          </form>
+          <div class="list" id="customersList"></div>
+        </div>
+
+        <div class="card" id="panel-orders" style="display:none">
+          <h3>Orders</h3>
+          <div style="margin-top:0.5rem">
+            <input id="searchOrder" placeholder="Search by Order ID or Customer" />
+          </div>
+          <div class="list" id="ordersList" style="margin-top:0.5rem"></div>
+        </div>
+
+      </div>
+
+      <aside>
+        <div class="card">
+          <div class="cart-header">
+            <h2 style="font-size:1rem">Cart</h2>
+            <div style="display:flex;gap:0.5rem">
+              <select id="selectCustomer"><option value="">Walk-in</option></select>
+              <button class="btn secondary" id="clearCartBtn">Clear</button>
+            </div>
+          </div>
+
+          <div class="cart-items" id="cartItems"></div>
+
+          <div class="totals card" style="margin-top:0.75rem;padding:0.75rem">
+            <div class="row"><strong>Subtotal</strong><span id="subtotal">0.00</span></div>
+            <div class="row"><label>Tax (5%)</label><span id="tax">0.00</span></div>
+            <div class="row"><strong>Total</strong><strong id="total">0.00</strong></div>
+            <div style="margin-top:0.5rem;display:flex;gap:0.5rem">
+              <button class="btn" id="checkoutBtn">Checkout</button>
+              <button class="btn1" id="saveDraft">Save Draft</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <script src="app.js">
+    
+  </script>
+</body>
+</html>
