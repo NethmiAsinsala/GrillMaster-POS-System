@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>GrillMaster POS</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header>
     <h1>GrillMaster POS</h1>
@@ -13,7 +15,7 @@
 
   <div class="container">
     <div class="grid">
-      
+
       <div>
         <div class="card" style="margin-bottom:1rem">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
@@ -40,16 +42,16 @@
           <div class="product-list" id="productList"></div>
         </div>
 
-        
+
         <div class="card" id="panel-products" style="display:none;margin-bottom:1rem">
           <h3>Manage Products</h3>
           <form id="productForm" class="row" style="margin-top:0.5rem">
             <input id="pName" placeholder="Name" required />
 
             <select id="pCategory">
-                <option>Burger</option>
-                <option>Fries</option>  
-                <option>Drink</option>
+              <option>Burger</option>
+              <option>Fries</option>
+              <option>Drink</option>
             </select>
 
             <input id="pPrice" placeholder="Price" type="number" min="0" step="0.01" required />
@@ -83,7 +85,9 @@
           <div class="cart-header">
             <h2 style="font-size:1rem">Cart</h2>
             <div style="display:flex;gap:0.5rem">
-              <select id="selectCustomer"><option value="">Walk-in</option></select>
+              <select id="selectCustomer">
+                <option value="">Walk-in</option>
+              </select>
               <button class="btn secondary" id="clearCartBtn">Clear</button>
             </div>
           </div>
@@ -106,7 +110,8 @@
   </div>
 
   <script src="app.js">
-    
+
   </script>
 </body>
+
 </html>

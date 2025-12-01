@@ -20,7 +20,7 @@
  }
 
  header h1 {
-     font-size: clamp(1rem, 2vw, 1.3rem); 
+     font-size: clamp(1rem, 2vw, 1.3rem);
  }
 
  .container {
@@ -39,8 +39,8 @@
      background: #585858;
      border-radius: 10px;
      padding: 0.75rem;
-     box-shadow: 2px  white;
-    
+     box-shadow: 2px white;
+
  }
 
  .product-list {
@@ -50,26 +50,27 @@
  }
 
 
-.product {
-    border: 2px solid ;
-    border-radius: 8px;
-    padding: 10px;
-    margin: 10px;
-    display: inline-block;
-    width: 150px;
-    text-align: center;
-gap: 0.5rem;
-    cursor: pointer;
-    box-shadow: 0 0 10px #049b0c;
-    
-}
+ .product {
+     border: 2px solid;
+     border-radius: 8px;
+     padding: 10px;
+     margin: 10px;
+     display: inline-block;
+     width: 150px;
+     text-align: center;
+     gap: 0.5rem;
+     cursor: pointer;
+     box-shadow: 0 0 10px #049b0c;
 
-.product-image {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    margin-bottom: 5px;
-}
+ }
+
+ .product-image {
+     width: 100%;
+     height: 100px;
+     object-fit: cover;
+     margin-bottom: 5px;
+ }
+
  .product .name {
      font-weight: 600
  }
@@ -158,6 +159,7 @@ gap: 0.5rem;
      background: #049b0c;
      color: white;
  }
+
  .btn1 {
      padding: 0.4rem 0.6rem;
      border-radius: 8px;
@@ -168,13 +170,14 @@ gap: 0.5rem;
  }
 
  .btn.secondary {
-     background:rgb(231, 53, 53);
+     background: rgb(231, 53, 53);
      color: #fff
- }  
-.btn.danger {
-     background:rgb(231, 53, 53);
+ }
+
+ .btn.danger {
+     background: rgb(231, 53, 53);
      color: #fff
- }  
+ }
 
  .btn.edit {
      background: #3b82f6;
@@ -209,53 +212,61 @@ gap: 0.5rem;
      }
  }
 
-@media (max-width: 1024px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
-    .cart-items {
-        max-height: 30vh;
-    }
-}
+ @media (max-width: 1024px) {
+     .grid {
+         grid-template-columns: 1fr;
+     }
 
-@media (max-width: 768px) {
-    .product-list {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    }
-    .product-image {
-        height: 90px;
-    }
-}
+     .cart-items {
+         max-height: 30vh;
+     }
+ }
 
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 0.95rem;
-    }
+ @media (max-width: 768px) {
+     .product-list {
+         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+     }
 
-    .product-list {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    }
+     .product-image {
+         height: 90px;
+     }
+ }
 
-    .product {
-        padding: 8px;
-    }
+ @media (max-width: 480px) {
+     header h1 {
+         font-size: 0.95rem;
+     }
 
-    .product-image {
-        height: 75px;
-    }
+     .product-list {
+         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+     }
 
-    form.row {
-        flex-direction: column;
-        gap: 0.8rem;
-    }
+     .product {
+         padding: 8px;
+     }
 
-    .btn,
-    .btn1 {
-        width: 100%;
-    }
-}
-.product.selected {
-    border: 3px solid #ff0000;
-    border-radius: 10px;
-    background: rgba(0, 255, 98, 0.15);
-}
+     .product-image {
+         height: 75px;
+     }
+
+     form.row {
+         flex-direction: column;
+         gap: 0.8rem;
+     }
+
+     .btn,
+     .btn1 {
+         width: 100%;
+     }
+ }
+
+ .product.selected {
+     border: 3px solid #ff0000;
+     border-radius: 10px;
+     background: rgba(0, 255, 98, 0.15);
+ }
+
+ .qty-mark {
+     background-color: #ff0000;
+     ;
+ }

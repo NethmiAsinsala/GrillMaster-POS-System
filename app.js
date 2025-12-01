@@ -22,19 +22,19 @@ loadDefaultProducts();
 function loadDefaultProducts() {
     if (products.length === 0) {
         products = [
-            {id: Date.now() + 1, name: "Smashed Chicken Burger", category: "Burgers", price: 1200, image:"assets/img/smashed-chicken-burgers.jpg" },
-            {id: Date.now() + 2, name: "Greek Chicken Burger", category: "Burgers", price: 1500, image:"assets/img/Greek-Chicken-Burger.jpg" },
-            {id: Date.now() + 3, name: "Crispy Fried Chicken Burger", category: "Burgers", price: 1800, image:"assets/img/Crispy-fried-chicken-burgers.jpg" },
-            {id: Date.now() + 4, name: "Juicy Chicken Burger", category: "Burgers", price: 2000, image:"assets/img/Juicy-Chicken-Burgers.jpg" },
-            {id: Date.now() + 5, name: "Aired Chicken Burger", category: "Burgers", price: 2200, image:"assets/img/aired-chicken-burgers.jpg" },
-            {id: Date.now() + 6, name: "Baked Fries", category: "Fries", price: 900, image:"assets/img/baked-fries.jpg" },
-            {id: Date.now() + 7, name: "Regular Fries", category: "Fries", price: 600, image:"assets/img/regular-french-friesjpg.jpg" },
-            {id: Date.now() + 8, name: "Coca Cola buddy", category: "Drinks", price: 120, image:"assets/img/cocacola-buddy.jpg" },
-            {id: Date.now() + 9, name: "Coca Cola Can", category: "Drinks", price: 300, image:"assets/img/cocacola-tin.jpeg" },
-            {id: Date.now() + 10, name: "Coca Cola Cup", category: "Drinks", price: 200, image:"assets/img/coak.jpg" },
-            {id: Date.now() + 11, name: "Pepsi Cup", category: "Drinks", price: 200, image:"assets/img/pepsi-cup.jpg" },
-            {id: Date.now() + 12, name: "Pepsi Bottle", category: "Drinks", price: 500, image:"assets/img/pepsi-bottle.jpg" },
-            {id: Date.now() + 13, name: "Sprite Can", category: "Drinks", price: 200, image:"assets/img/sprite-can.jpg" }
+            { id: Date.now() + 1, name: "Smashed Chicken Burger", category: "Burgers", price: 1200, image: "assets/img/smashed-chicken-burgers.jpg" },
+            { id: Date.now() + 2, name: "Greek Chicken Burger", category: "Burgers", price: 1500, image: "assets/img/Greek-Chicken-Burger.jpg" },
+            { id: Date.now() + 3, name: "Crispy Fried Chicken Burger", category: "Burgers", price: 1800, image: "assets/img/Crispy-fried-chicken-burgers.jpg" },
+            { id: Date.now() + 4, name: "Juicy Chicken Burger", category: "Burgers", price: 2000, image: "assets/img/Juicy-Chicken-Burgers.jpg" },
+            { id: Date.now() + 5, name: "Aired Chicken Burger", category: "Burgers", price: 2200, image: "assets/img/aired-chicken-burgers.jpg" },
+            { id: Date.now() + 6, name: "Baked Fries", category: "Fries", price: 900, image: "assets/img/baked-fries.jpg" },
+            { id: Date.now() + 7, name: "Regular Fries", category: "Fries", price: 600, image: "assets/img/regular-french-friesjpg.jpg" },
+            { id: Date.now() + 8, name: "Coca Cola buddy", category: "Drinks", price: 120, image: "assets/img/cocacola-buddy.jpg" },
+            { id: Date.now() + 9, name: "Coca Cola Can", category: "Drinks", price: 300, image: "assets/img/cocacola-tin.jpeg" },
+            { id: Date.now() + 10, name: "Coca Cola Cup", category: "Drinks", price: 200, image: "assets/img/coak.jpg" },
+            { id: Date.now() + 11, name: "Pepsi Cup", category: "Drinks", price: 200, image: "assets/img/pepsi-cup.jpg" },
+            { id: Date.now() + 12, name: "Pepsi Bottle", category: "Drinks", price: 500, image: "assets/img/pepsi-bottle.jpg" },
+            { id: Date.now() + 13, name: "Sprite Can", category: "Drinks", price: 200, image: "assets/img/sprite-can.jpg" }
         ];
         save("products", products);
     }
@@ -45,19 +45,26 @@ function renderProductCatalog() {
     let category = document.getElementById("categoryFilter").value;
     let search = document.getElementById("searchProduct").value.toLowerCase();
     catalog.innerHTML = "";
+
     products
         .filter(p => (category === "all" || p.category === category))
         .filter(p => p.name.toLowerCase().includes(search))
         .forEach(p => {
+            let cartItem = cart.find(i => i.id === p.id);
+            let qty = cartItem ? cartItem.qty : 0;
+            let selectedClass = qty > 0 ? "selected" : "";
+
             catalog.innerHTML += `
-                <div class="product" id="product-${p.id}" onclick="selectProduct(${p.id})">
-                 <img src="${p.image}" alt="${p.name}" class="product-image">
+                <div class="product ${selectedClass}" id="product-${p.id}" onclick="selectProduct(${p.id})">
+                    <img src="${p.image}" alt="${p.name}" class="product-image">
                     <strong>${p.name}</strong>
                     <div>LKR ${p.price}</div>
+                    ${qty > 0 ? `<div class="qty-mark">x${qty}</div>` : ""}
                 </div>
             `;
         });
 }
+
 
 
 document.getElementById("categoryFilter").addEventListener("change", renderProductCatalog);
@@ -109,7 +116,7 @@ function showOrders() {
     renderOrdersList();
 }
 
-document.getElementById("productForm").addEventListener("submit", function(e) {
+document.getElementById("productForm").addEventListener("submit", function (e) {
     e.preventDefault();
     let product = {
         id: Date.now(),
@@ -144,7 +151,7 @@ function renderProductsList() {
     });
 }
 
-document.getElementById("customerForm").addEventListener("submit", function(e) {
+document.getElementById("customerForm").addEventListener("submit", function (e) {
     e.preventDefault();
     let customer = {
         id: Date.now(),
@@ -192,7 +199,7 @@ function addToCart(id) {
     if (item) {
         item.qty++;
     } else {
-        cart.push({...product, qty: 1});
+        cart.push({ ...product, qty: 1 });
     }
     renderCart();
 }
@@ -229,7 +236,7 @@ function renderCart() {
     document.getElementById("total").textContent = total.toFixed(2);
 }
 
-document.getElementById("checkoutBtn").addEventListener("click", function() {
+document.getElementById("checkoutBtn").addEventListener("click", function () {
     if (cart.length === 0) {
         alert("Cart is empty!");
         return;
@@ -246,12 +253,14 @@ document.getElementById("checkoutBtn").addEventListener("click", function() {
     clearCart();
 
 
-document.querySelectorAll(".product.selected")
-    .forEach(el => el.classList.remove("selected"));
+    document.querySelectorAll(".product.selected").forEach(el => {
+        el.classList.remove("selected");
+        const qtyDiv = el.querySelector(".qty-mark");
+        if (qtyDiv) qtyDiv.remove();
+    });
 
-renderOrdersList();
-alert("Order placed successfully!");
-
+    renderOrdersList();
+    alert("Order placed successfully!");
 });
 
 function renderOrdersList() {
@@ -268,18 +277,26 @@ function renderOrdersList() {
 }
 function selectProduct(id) {
     const card = document.getElementById("product-" + id);
+    addToCart(id);
+    const item = cart.find(i => i.id === id);
 
-    card.classList.toggle("selected");
-
-    if (card.classList.contains("selected")) {
-        addToCart(id);
+    if (item.qty > 0) {
+        card.classList.add("selected");
     }
+    let qtyDiv = card.querySelector(".qty-mark");
+    if (!qtyDiv) {
+        qtyDiv = document.createElement("div");
+        qtyDiv.classList.add("qty-mark");
+        card.appendChild(qtyDiv);
+    }
+    qtyDiv.textContent = `x${item.qty}`;
 }
 
 
 
+
 window.addEventListener('DOMContentLoaded', () => {
-   renderProductCatalog();
-   renderCustomerDropdown();
-   renderOrdersList();
+    renderProductCatalog();
+    renderCustomerDropdown();
+    renderOrdersList();
 });
