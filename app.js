@@ -207,11 +207,30 @@ function addToCart(id) {
 function removeFromCart(id) {
     cart = cart.filter(i => i.id !== id);
     renderCart();
+    document.querySelectorAll(".product.selected").forEach(el => {
+
+        if (el.id === "product-" + id) {
+            el.classList.remove("selected");
+            const qtyDiv = el.querySelector(".qty-mark");
+            if (qtyDiv) qtyDiv.remove();
+        }
+
+
+
+    });
+
 }
 
 function clearCart() {
     cart = [];
     renderCart();
+    document.querySelectorAll(".product.selected").forEach(el => {
+        el.classList.remove("selected");
+        const qtyDiv = el.querySelector(".qty-mark");
+        if (qtyDiv) qtyDiv.remove();
+    });
+
+
 }
 
 document.getElementById("clearCartBtn").addEventListener("click", clearCart);
